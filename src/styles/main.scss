@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+
+// COLOURS
+
+$red: #E60023;
+$hover_red: #a00018;
+$light_grey: #efefef;
+$hover_grey: #d3d3d3;
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+}
+// NAVBAR 
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  .navbar-logo{
+    height: 50px;
+    margin-left: 20px;
+  }
+  .buttons{
+    display: flex;
+    align-items: center;
+    a{
+      text-decoration: none;
+      margin: 0px 30px;
+      color: black;
+    }
+    .login-button{
+      background-color: $red;
+      padding: 10px 12px;
+      border-radius: 20px;
+      color: white;
+      margin-right: 20px;
+    }
+    .login-button:hover{
+        background-color: $hover_red;
+    }
+    .signup-button{
+      background-color: $light_grey;
+      padding: 10px 12px;
+      border-radius: 20px;
+      margin-right: 20px;
+    }
+    .signup-button:hover{
+      background-color: $hover_grey;
+      padding: 10px 12px;
+      border-radius: 20px;
+      margin-right: 20px;
+    }
+    .about-button:hover{
+        border-bottom: 0.5px solid black;
+    }
+
+  }
+}
+
+// HOME 
+// GALLERY GRID
+
+// .gallery-grid{
+//   width: 120px;
+// }
+
+// DESIGN INDEX CARD
+
+.design-index-full{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.design-index-cards{
+
+  .design-index-images{
+    width: 250px;
+    height: 350px;
+    border-radius: 20px;
+    object-fit: contain;
+  }
+  .name{
+    text-align: center;
+  }
+}
