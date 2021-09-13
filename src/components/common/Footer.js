@@ -1,6 +1,13 @@
 function Footer() {
   return (
-    <h1>Made by Jessica Strawford</h1>
+    <section className="footer">
+      {/* <hr /> */}
+      <ul className="footer-list">
+        <li className="design-feed">{`© ${new Date().getFullYear()} Design Feed`}</li>
+        <li className="made-by"><a href='https://github.com/jessicastrawford' target="_blank" rel="noreferrer" >Made by Jessica Strawford</a></li>
+      </ul>
+    </section>
+
   )
 }
 

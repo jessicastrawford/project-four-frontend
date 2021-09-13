@@ -47,7 +47,7 @@ function App() {
         </Route>
       </Switch>
     </BrowserRouter>
-    // </ChakraProvider>
+
    
   )
 

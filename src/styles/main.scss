@@ -10,6 +10,7 @@ $hover_grey: #d3d3d3;
 body {
   font-family: 'Inter', sans-serif;
   font-weight: bold;
+  line-height: 1.6;
 }
 // NAVBAR 
 
@@ -54,15 +55,83 @@ body {
     .about-button:hover{
         border-bottom: 0.5px solid black;
     }
+    .profile-button:hover{
+      border-bottom: 0.5px solid black;
+    }
+    .designs-button:hover{
+    border-bottom: 0.5px solid black;
+    }
+    .logout-button{
+      background-color: $red;
+      padding: 10px 12px;
+      border-radius: 20px;
+      color: white;
+      margin-right: 20px;
+      border: none;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .logout-button:hover{
+      background-color: $hover_red;
+      cursor: pointer;
+    }
 
   }
 }
+// Login 
+.login-section{
+.toast-popup{
+  max-width: 30px;
+}
+}
+
+
+// HOME
+.gallery-grid{
+  margin-top: 30px;
+  .photo-list {
+    width: 100%;
+    list-style: none;
+    margin: 0 auto;
+    // display: flex;
+    // justify-content: center;
+  }
+  
+  .photo-item {
+    display: flex;
+    width: 300px;
+    margin: 10px 0;
+  }
+  
+  .photo-item img {
+    display: flex;
+    width: 100%;
+    border-radius: 20px;
+  }
+  .scroll-button {
+    display: flex;
+    .button{
+      background-color: white;
+    }
+  }
+}
+
+
 
 // HOME 
 // GALLERY GRID
 
 // .gallery-grid{
 //   width: 120px;
+// }
+
+// DESIGN INDEX PAGE
+
+// .design-index-page{
+//   .input{
+//     background-color: $light_grey;
+//     border: 1px sollid black;
+//   }
 // }
 
 // DESIGN INDEX CARD
@@ -79,9 +148,56 @@ body {
     width: 250px;
     height: 350px;
     border-radius: 20px;
-    object-fit: contain;
+    object-fit: cover;
+    // padding: 15px;
   }
   .name{
     text-align: center;
+  }
+}
+
+// PROFILE SHOW
+
+.profile-show-section{
+  .profile-image{
+    // display: flex;
+    // justify-content: center;
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+
+}
+
+// DESIGN SHOW PAGE
+
+.table{
+  width: 450px;
+}
+
+// FOOTER
+
+.footer{
+  position: absolute;
+  bottom:0;
+  width:100%;
+
+  .footer-list{
+    list-style: none;
+    color: #838180;
+    display: flex;
+    justify-content: center;
+    a{
+      text-decoration: none;
+      color: #838180;
+    }
+    .design-feed{
+      padding-right:15px;
+    }
+    .made-by{
+      padding-left: 15px;
+    }
   }
 }

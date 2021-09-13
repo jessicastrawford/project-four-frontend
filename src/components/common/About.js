@@ -1,6 +1,12 @@
+import Footer from './Footer'
+
 function About() {
   return (
-    <h1> I am the ABOUT PAGE</h1>
+    <section className="about-page">
+      <h1> I am the ABOUT PAGE</h1>
+      <Footer />
+    </section>
+
   )
 
 }
