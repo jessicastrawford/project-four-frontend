@@ -1,8 +1,9 @@
 import React from 'react'
 import { profileView } from '../../lib/api'
-import { getUserId } from '../../lib/auth'
+import { getUserId, isOwner } from '../../lib/auth'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { deleteADesign } from '../../lib/api'
 
 function ProfileShow() {
 
@@ -32,8 +33,21 @@ function ProfileShow() {
     history.push('/design-upload')
   }
 
-  console.log(profile.savedDesigns)
-  console.log(profile.addedDesigns)
+  // console.log('hello',profile.savedDesigns)
+  // console.log('hi', profile.addedDesigns)
+
+  const handleDeleteDesign = async (e) => {
+    try {
+      console.log('clicked for delete', e.target.value)
+      await deleteADesign(e.target.value)
+      const res = await profileView(getUserId())
+      setProfile(res.data)
+      
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
 
   return (
     <section className="profile-show-section">
@@ -49,6 +63,7 @@ function ProfileShow() {
             <Link to={`/designs/${addedDesign.id}`}>
               <img key={addedDesign.name} src={addedDesign.image}/>
             </Link>
+            <button onClick={handleDeleteDesign} value={addedDesign.id}>Delete design</button>
           </>
         ))}
       </div>

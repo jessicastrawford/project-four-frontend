@@ -1,15 +1,15 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { getSingleDesign, createAComment, getSingleUser, saveUnsaveDesign } from '../../lib/api'
+import { getSingleDesign, createAComment, getSingleUser, saveUnsaveDesign, profileView } from '../../lib/api'
 import axios from 'axios'
-import { isAuthenticated } from '../../lib/auth'
+import { isAuthenticated, getUserId } from '../../lib/auth'
 import ReactStars from 'react-star-rating-component'
 import MeasurementTable from './MeasurementTable'
 
-// import { TextArea } from '@chakra-ui/react'
 import Moment from 'react-moment'
 import 'moment-timezone'
-
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
+import PublishIcon from '@material-ui/icons/Publish'
 
 function DesignShow() {
 
@@ -22,6 +22,7 @@ function DesignShow() {
   const [user, setUser] = React.useState(null)
   const [isClicked, setIsClicked] = React.useState(false)
   const [isSaved, setIsSaved] = React.useState(false)
+  const [comments, setComments] = React.useState('')
 
   
   isAuthenticated()
@@ -30,19 +31,27 @@ function DesignShow() {
     const getData = async () => {
       try {
         const res = await getSingleDesign(designId)
-        console.log('hello')
         setDesign(res.data)
-        console.log(design)
+        const { data } = await getSingleUser()
+        setUser(data)
         setProduct(res.data.product)
+        const found = data.savedDesigns.map(savedDesign => {
+          return savedDesign.id
+        })
+        if (found?.includes(Number(designId))) {
+          setIsSaved(true)
+        }
+        if (res.data.comments) {
+          setComments(res.data.comments)
+        }
+        console.log('comments',comments)
+      
       } catch (err){
         console.log(err)
       }
     }
     getData()
   }, [designId])
-
-  console.log(product)
-
 
 
   const handleChange = (e) => {
@@ -69,10 +78,22 @@ function DesignShow() {
   
   }, [])
 
+  console.log('form', formData)
+
   const handleSubmit = async (e, nextValue) => {
     e.preventDefault()
-    setRating({ nextValue })
-    await createAComment(designId, formData) 
+    try {
+      setRating({ nextValue })
+      await createAComment(designId, formData) 
+      const designWithAddedComment = await getSingleDesign(designId)
+      console.log('resdata', designWithAddedComment.data)
+      setDesign(designWithAddedComment.data)
+      setFormData({ text: '' })
+      // formData.rating = ''
+      // formData.text = ''
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const handleRating = (nextValue) => {
@@ -92,23 +113,17 @@ function DesignShow() {
   })
   console.log(filteredDesigns)
 
-  // const filteredDesigns = designs.filter(design => (
-  //   design.product === design.product
-  // ))
-  // console.log(filteredDesigns)
-
-
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await getSingleUser()
-        setUser(data)
-      } catch (err) {
-        console.log(err)
-      }
-    } 
-    getData()
-  }, [])
+  // React.useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const { data } = await getSingleUser()
+  //       setUser(data)
+  //     } catch (err) {
+  //       console.log(err)
+  //     }
+  //   } 
+  //   getData()
+  // }, [])
 
   // const handleSave = async (e) => {
   //   e.preventDefault()
@@ -126,72 +141,122 @@ function DesignShow() {
     try {
       await saveUnsaveDesign(designId)
       setIsClicked(true) 
-      setIsSaved(true)
+      setIsSaved(!isSaved)
     } catch (err) {
       console.log(err)
     }
   }
 
+  console.log(isSaved)
 
+  const handleUnsave = async (e) => {
+    e.preventDefault()
+    try {
+      setIsSaved(!isSaved)
+      await saveUnsaveDesign(designId)
+      setIsClicked(false) 
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
-    <section>
-      <h1>I am the Design Show Page</h1>
-      <div>
-        {!isClicked && !isSaved ? <button onClick={handleSave}>Save</button> :
-          <button onClick={handleSave}>Saved</button>}
-      </div>    
-      <p>{design.name}</p>
-      <p>{design.description}</p>
-      <p>{design.fabric}</p>
-      <p>{design.colour}</p>
-      <p>{design.print}</p>
-      <p>{design.size}</p>
-      <p>{design && design.addedBy.username}</p>
-      <img src={design.image} alt={design.name} />
-      <img src={design.designDrawing}/>
-      <p>Comments...</p>
-      <div>{design && design.comments.map(comment => (
-        <div key={design.id}>
-          <p>&quot;{comment.text}&quot;</p>
-          <p>Added by {comment.owner.username}, <Moment fromNow >{comment.createdAt}</Moment></p>
-          <ReactStars 
-            count={5}
-            size={20}
-            half={false}
-            value={comment.rating}
-            emptyIcon={<i className="far fa-star"></i>}s
-            fullIcon={<i className="fa fa-star"></i>}
-            edit={false}
-            starColor={'red'}
-          />
-          <img src={comment.owner.profileImage}/>
+    <section className="design-show-page">
+      <div className="box-section">
+        <div className="image-section">
+          <img src={design.image} alt={design.name} />
         </div>
-      ))}</div>
+        <div className="information-section">
+          <div className="top-row-icons">
+            <div className="icons">
+              <MoreHorizIcon />
+              <PublishIcon className="upload-icon"/>
+            </div>
+            <div >
+              {!isSaved ? <button onClick={handleSave} className="button">Save</button> :
+                <button onClick={handleUnsave} className="button">Delete save</button>}
+            </div>   
+          </div>
+          <div className="right-side">
+            <div className="inside-paragraph">
+              <h1>{design.name}</h1>
+              <p className="description">{design.description} </p>
+              <div className="design-info">
+                <p>Fabric: {design.fabric}</p>
+                <p>Colour: {design.colour}</p>
+                {/* <p>{design.print}</p> */}
+                <p>Size: {design.size}</p>
+                <p>Season: {design.season}</p>
+              </div>
+            </div>
+            <div className="added-by">
+              <div className="profile">
+                <img src={design && design.addedBy.profileImage} className="added-by-image"/>
+                <div>
+                  <p>Added by: </p> 
+                  <p className="name">{design && design.addedBy.username}</p>
+                </div>
+              </div>
+              <button className="follow-button">View Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <form>
-        <div className="stars">
-          <ReactStars
-            count={5}
-            size={20}
-            half={false}
-            name="rating"
-            value={parseInt(rating.nextValue)}
-            onStarHover={handleRating}
-            starColor={'red'}
-            fullIcon={<i className="fa fa-star"></i>}
-            emptyIcon={<i className="far fa-star"></i>}
+        <p className="title-adding-comment">Add your comment and rating below</p>
+        <div className="text-box">
+          <div className="stars">
+            <ReactStars
+              count={5}
+              size={20}
+              half={false}
+              name="rating"
+              value={parseInt(rating.nextValue)}
+              onStarHover={handleRating}
+              starColor={'red'}
+              fullIcon={<i className="fa fa-star"></i>}
+              emptyIcon={<i className="far fa-star"></i>}
+            />
+          </div>
+          <textarea
+            className="comment-box"
+            name="text"
+            value={formData.text}
+            onChange={handleChange}
+            placeholder="Enter your comment here"
           />
+          <div className="buttons">
+            {isAuthenticated ?  <button onClick={handleSubmit} className="submit">Submit</button> : <button>Log in to comment</button>}
+            {/* <TextArea placeholder="Enter your comment here"/> */}
+            <button className="cancel">Cancel</button>
+          </div>
         </div>
-        <textarea
-          className="comment-box"
-          name="text"
-          value={formData.text}
-          onChange={handleChange}
-          placeholder="Enter your comment here"
-        />
-        {isAuthenticated ?  <button onClick={handleSubmit}>Submit</button> : <button>Log in to comment</button>}
-        {/* <TextArea placeholder="Enter your comment here"/> */}
       </form>
+      <div className="comment-section">
+        {/* <h1 className="comment-header">Comments...</h1> */}
+        <div className="comment-boxes">{design && design.comments.map(comment => (
+          <div key={design.id} className="individual-comment-box">
+            <div className="profile-comment">
+              <img src={comment.owner.profileImage} className="profile-image"/>
+              <p>Added by {comment.owner.username},<br/> <Moment fromNow >{comment.createdAt}</Moment></p>
+            </div>
+            <div className="ratings-and-text">
+              <ReactStars 
+                count={5}
+                size={20}
+                half={false}
+                value={comment.rating}
+                emptyIcon={<i className="far fa-star"></i>}s
+                fullIcon={<i className="fa fa-star"></i>}
+                edit={false}
+                starColor={'red'}
+              />
+              <p>&quot;{comment.text}&quot;</p>
+            </div>
+          </div>
+        ))}</div>
+      </div>
+      <img src={design.designDrawing}/>
       <div>
         <MeasurementTable design={design}/>
       </div>

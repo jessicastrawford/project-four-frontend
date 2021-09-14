@@ -47,6 +47,10 @@ export function createADesign(formData) {
   return axios.post(`${baseUrl}/designs/`, formData, headers())
 }
 
+export function deleteADesign(designId) {
+  return axios.delete(`${baseUrl}/designs/${designId}/`, headers())
+}
+
 
 // COMMENTS
 
@@ -54,7 +58,8 @@ export function createAComment(designId, formData) {
   return axios.post(`${baseUrl}/designs/${designId}/comments/`, formData, headers())
 }
 
-// 
+// SAVE
+
 export function saveUnsaveDesign(designId) {
-  return axios.post(`${baseUrl}/designs/${designId}/save/`, headers())
+  return axios.post(`${baseUrl}/designs/${designId}/save/`, null, headers())
 }

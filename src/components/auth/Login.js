@@ -3,7 +3,7 @@ import { useHistory } from 'react-router'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
 import { Link } from 'react-router-dom'
-import { ChakraProvider } from '@chakra-ui/react' 
+
 import LoginToast from './LoginToast' 
 
 function Login() {
@@ -37,42 +37,42 @@ function Login() {
 
 
   return (
-    <ChakraProvider>
-      <section className="login-section">
-        <form>
-          <input
-            className="login-input"
-            placeholder="Username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-          <input
-            className="login-input"
-            placeholder="Password"
-            name="password"
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <button
-            type="submit" 
-            className="login-button" 
-            onClick={handleSubmit}>
+
+    <section className="login-section">
+      <form>
+        <input
+          className="login-input"
+          placeholder="Username"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+        />
+        <input
+          className="login-input"
+          placeholder="Password"
+          name="password"
+          type="password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <button
+          type="submit" 
+          className="login-button" 
+          onClick={handleSubmit}>
         Log In
-          </button>
-          {error && 
+        </button>
+        {error && 
         <>
           <p>Sorry, your username or password is inncorrect</p>
         </>
-          }
-          <p>Need an account? Sign up <Link to="/register" style={{ color: 'red' }}>here</Link></p>
-        </form>
-      </section>
-    </ChakraProvider>
-   
+        }
+        <p>Need an account? Sign up <Link to="/register" style={{ color: 'red' }}>here</Link></p>
+      </form>
+    </section>
+
   )
 }
+
 
 export default Login
 

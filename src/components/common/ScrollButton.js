@@ -24,7 +24,7 @@ function ScrollButton() {
 
 
   return (
-    <button>
+    <button className="homepage-scroll-button">
       <FaArrowCircleDown onClick={scrollToBottom} />
     </button>
   )

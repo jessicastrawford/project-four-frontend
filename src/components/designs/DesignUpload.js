@@ -1,8 +1,12 @@
 import React from 'react'
 import ImageUploadField from '../auth/ImageUpload'
 import { createADesign } from '../../lib/api'
+import { useHistory } from 'react-router'
+import { getUserId } from '../../lib/auth'
 
 function DesignUpload() {
+
+  const history = useHistory()
 
   const [clicked, setClicked] = React.useState(false)
 
@@ -16,22 +20,48 @@ function DesignUpload() {
     print: false,
     image: '',
     designDrawing: '',
-    // season: '',
-    centerBackLength: '',
-    centerFrontLength: '',
-    sleeveLength: '',
-    hemLength: '',
-    chest: '',
-    waist: '',
-    insideLegLength: '',
-    outsideLegLength: '',
+    season: '',
+    centerBackLength: null,
+    centerFrontLength: null,
+    sleeveLength: null,
+    hemLength: null,
+    chest: null,
+    waist: null,
+    insideLegLength: null,
+    outsideLegLength: null,
+    addedBy: '',
   })
+
+  console.log('formdata', formData)
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   const handleClick = (e) => {
     console.log('clicked')
     e.preventDefault()
     setClicked(true)
-    
+  }
+
+  const handleImageUpload = (imageUrl, name) => {
+    setFormData({ ...formData, [name]: imageUrl })
+  }
+
+  const handleCancel = () => {
+    history.push('/profile')
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const res = await createADesign(formData)
+      console.log(res)
+      history.push('/profile')
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -84,6 +114,20 @@ function DesignUpload() {
             onChange={handleChange}
           />
         </div>
+        <div className="season-dropdown">
+          <label>Select a season</label>
+          <select
+            name="season"
+            onChange={handleChange}
+            value={formData.season}
+          >
+            <option value="" disable></option>
+            <option value="Autumn Winter 2020">Autumn Winter 2020</option>
+            <option value="Spring Summer 2020">Spring Summer 2020</option>
+            <option value="Autumn Winter 2021">Autumn Winter 2021</option>
+            <option value="Spring Summer 2021">Spring Summer 2021</option>
+          </select>
+        </div>
         <div className="product-dropdown">
           <label>Select a product</label>
           <select
@@ -124,7 +168,7 @@ function DesignUpload() {
           <select
             name="size"
             onChange={handleChange}
-            value={formData.size}
+            value={Number(formData.size)}
           >
             <option value="" disable></option>
             <option value="6">6</option>
@@ -149,7 +193,7 @@ function DesignUpload() {
           </label>
         </div>
         <div className="measurements-section">
-          {clicked ? <button onClick={handleClick}>
+          {!clicked ? <button onClick={handleClick}>
             Would you like to add measurements?
           </button> : 
             <>
@@ -158,7 +202,7 @@ function DesignUpload() {
                 <input 
                   placeholder="Measurement (cm)"
                   name="centerBackLength"
-                  value={formData.centerBackLength}
+                  value={Number(formData.centerBackLength)}
                   onChange={handleChange}
                 />
               </div>
@@ -167,7 +211,7 @@ function DesignUpload() {
                 <input 
                   placeholder="Measurement (cm)"
                   name="centerFrontLength"
-                  value={formData.centerFrontLength}
+                  value={Number(formData.centerFrontLength)}
                   onChange={handleChange}
                 />
               </div>
@@ -176,7 +220,7 @@ function DesignUpload() {
                 <input 
                   placeholder="Measurement (cm)"
                   name="sleeveLength"
-                  value={formData.sleeveLength}
+                  value={Number(formData.sleeveLength)}
                   onChange={handleChange}
                 />
               </div>
@@ -185,7 +229,7 @@ function DesignUpload() {
                 <input 
                   placeholder="Measurement (cm)"
                   name="hemLength"
-                  value={formData.hemLength}
+                  value={Number(formData.hemLength)}
                   onChange={handleChange}
                 />
               </div>
@@ -194,7 +238,7 @@ function DesignUpload() {
                 <input 
                   placeholder="Measurement (cm)"
                   name="chest"
-                  value={formData.chest}
+                  value={Number(formData.chest)}
                   onChange={handleChange}
                 />
               </div>
@@ -203,7 +247,7 @@ function DesignUpload() {
                 <input 
                   placeholder="Measurement (cm)"
                   name="waist"
-                  value={formData.waist}
+                  value={Number(formData.waist)}
                   onChange={handleChange}
                 />
               </div>
@@ -212,7 +256,7 @@ function DesignUpload() {
                 <input 
                   placeholder="Measurement (cm)"
                   name="insideLegLength"
-                  value={formData.insideLegLength}
+                  value={Number(formData.insideLegLength)}
                   onChange={handleChange}
                 />
               </div>
@@ -221,13 +265,15 @@ function DesignUpload() {
                 <input 
                   placeholder="Measurement (cm)"
                   name="outsideLegLength"
-                  value={formData.outsideLegLength}
+                  value={Number(formData.outsideLegLength)}
                   onChange={handleChange}
                 />
               </div>
             </>
           }
         </div>
+        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleCancel}>Cancel</button>
       </form>  
     </section>
 

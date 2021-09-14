@@ -1,10 +1,14 @@
 import React from 'react'
 import DesignIndexCard from './DesignIndexCard'
-// import { Select } from '@chakra-ui/react'
 
-import { InputGroup, InputLeftElement, Stack, Search2Icon }  from '@chakra-ui/react'
 import { getAllDesigns } from '../../lib/api'
-import { ChakraProvider } from '@chakra-ui/react'
+import SearchIcon from '@material-ui/icons/Search'
+
+import { makeStyles } from '@material-ui/core/styles'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
 
 function DesignIndex() {
 
@@ -45,7 +49,7 @@ function DesignIndex() {
   }
   const handleSizeFilter = (e) => {
     console.log('clicked', e.target.value)
-    setSelectSizeInput(Number(e.target.value)) 
+    setSelectSizeInput(e.target.value === 'all' ? e.target.value : Number(e.target.value)) 
   }
   const handleSeasonFilter = (e) => {
     console.log('clicked', e.target.value)
@@ -59,65 +63,79 @@ function DesignIndex() {
   }
 
   return (
-    // <ChakraProvider>
     <section className="design-index-page">
-      <div>
-        <Stack spacing={4}>
-          <InputGroup>
-            <InputLeftElement 
-              pointerEvents="none"
-              props={<Search2Icon color="grey.300" />}
-            />
-            <input className="input" placeholder="Search" onChange={handleSearch}/>
-          </InputGroup>
-        </Stack>
+      <div className="search-input-box">
+        <SearchIcon className="search-icon"/>
+        <input className="input" placeholder="Search" onChange={handleSearch}/>
       </div>
-      <div className="product-filter">
-        <select onChange={handleProductFilter}>
-          <option value="all" size="md" variant="outline">All</option>
-          <option value="top" size="md" variant="outline">Tops</option>
-          <option value="dress" size="md" variant="outline">Dresses</option>
-          <option value="skirt" size="md" variant="outline">Skirts</option>
-          <option value="trouser" size="md" variant="outline">Trousers</option>
-          <option value="jacket" size="md" variant="outline">Jackets</option>
-        </select>
-      </div>
-      <div className="colour-filter">
-        <select onChange={handleColourFilter}>
-          <option value="all" size="md" variant="outline">All</option>
-          <option value="black" size="md" variant="outline">Black</option>
-          <option value="white" size="md" variant="outline">White</option>
-          <option value="red" size="md" variant="outline">Red</option>
-          <option value="blue" size="md" variant="outline">Blue</option>
-          <option value="yellow" size="md" variant="outline">Yellow</option>
-          <option value="orange" size="md" variant="outline">Orange</option>
-          <option value="pink" size="md" variant="outline">Pink</option>
-          <option value="purple" size="md" variant="outline">Purple</option>
-          <option value="green" size="md" variant="outline">Green</option>
-          <option value="brown" size="md" variant="outline">Brown</option>
-        </select>
-      </div>
-      <div className="size-filter">
-        <select onChange={handleSizeFilter}>
-          <option value="all" size="md" variant="outline">All</option>
-          <option value="6" size="md" variant="outline">6</option>
-          <option value="8" size="md" variant="outline">8</option>
-          <option value="10" size="md" variant="outline">10</option>
-          <option value="12" size="md" variant="outline">12</option>
-          <option value="14" size="md" variant="outline">14</option>
-          <option value="16" size="md" variant="outline">16</option>
-          <option value="18" size="md" variant="outline">18</option>
-          <option value="20" size="md" variant="outline">20</option>
-        </select>
-      </div>
-      <div className="season-filter">
-        <select onChange={handleSeasonFilter}>
-          <option value="all" size="md" variant="outline">All</option>
-          <option value="Autumn Winter 2020" size="md" variant="outline">Autumn Winter 2020</option>
-          <option value="Spring Summer 2020" size="md" variant="outline">Spring Summer 2020</option>
-          <option value="Autumn Winter 2021" size="md" variant="outline">Autumn Winter 2021</option>
-          <option value="Spring Summer 2021" size="md" variant="outline">Spring Summer 2021</option>
-        </select>
+      <div className="filters">
+        <div className="product-filter-form">
+          <FormControl>
+            <div className="product-filter">
+              <InputLabel>Product</InputLabel>
+              <Select onChange={handleProductFilter} className="product" disableUnderline >
+                <MenuItem value="all" size="md" variant="outline">All</MenuItem>
+                <MenuItem value="top" size="md" variant="outline">Tops</MenuItem>
+                <MenuItem value="dress" size="md" variant="outline">Dresses</MenuItem>
+                <MenuItem value="skirt" size="md" variant="outline">Skirts</MenuItem>
+                <MenuItem value="trouser" size="md" variant="outline">Trousers</MenuItem>
+                <MenuItem value="jacket" size="md" variant="outline">Jackets</MenuItem>
+              </Select>
+            </div>
+          </FormControl>
+        </div>
+        <div className="colour-filter-form">
+          <FormControl>
+            <div className="colour-filter">
+              <InputLabel>Colour</InputLabel>
+              <Select onChange={handleColourFilter} className="colour" disableUnderline>
+                <MenuItem value="all" size="md" variant="outline">All</MenuItem>
+                <MenuItem value="black" size="md" variant="outline">Black</MenuItem>
+                <MenuItem value="white" size="md" variant="outline">White</MenuItem>
+                <MenuItem value="red" size="md" variant="outline">Red</MenuItem>
+                <MenuItem value="blue" size="md" variant="outline">Blue</MenuItem>
+                <MenuItem value="yellow" size="md" variant="outline">Yellow</MenuItem>
+                <MenuItem value="orange" size="md" variant="outline">Orange</MenuItem>
+                <MenuItem value="pink" size="md" variant="outline">Pink</MenuItem>
+                <MenuItem value="purple" size="md" variant="outline">Purple</MenuItem>
+                <MenuItem value="green" size="md" variant="outline">Green</MenuItem>
+                <MenuItem value="brown" size="md" variant="outline">Brown</MenuItem>
+              </Select>
+            </div>
+          </FormControl>
+        </div>
+        <div className="size-filter-form">
+          <FormControl>
+            <div className="size-filter">
+              <InputLabel>Size</InputLabel>
+              <Select onChange={handleSizeFilter} className="size" disableUnderline>
+                <MenuItem value="all" size="md" variant="outline">All</MenuItem>
+                <MenuItem value="6" size="md" variant="outline">6</MenuItem>
+                <MenuItem value="8" size="md" variant="outline">8</MenuItem>
+                <MenuItem value="10" size="md" variant="outline">10</MenuItem>
+                <MenuItem value="12" size="md" variant="outline">12</MenuItem>
+                <MenuItem value="14" size="md" variant="outline">14</MenuItem>
+                <MenuItem value="16" size="md" variant="outline">16</MenuItem>
+                <MenuItem value="18" size="md" variant="outline">18</MenuItem>
+                <MenuItem value="20" size="md" variant="outline">20</MenuItem>
+              </Select>
+            </div>
+          </FormControl>
+        </div>
+        <div className="season-filter-form">
+          <FormControl>
+            <div className="season-filter">
+              <InputLabel>Season</InputLabel>
+              <Select onChange={handleSeasonFilter} className="season" disableUnderline>
+                <MenuItem value="all" size="md" variant="outline">All</MenuItem>
+                <MenuItem value="Autumn Winter 2020" size="md" variant="outline">Autumn Winter 2020</MenuItem>
+                <MenuItem value="Spring Summer 2020" size="md" variant="outline">Spring Summer 2020</MenuItem>
+                <MenuItem value="Autumn Winter 2021" size="md" variant="outline">Autumn Winter 2021</MenuItem>
+                <MenuItem value="Spring Summer 2021" size="md" variant="outline">Spring Summer 2021</MenuItem>
+              </Select>
+            </div>
+          </FormControl>
+        </div>
       </div>
       <div className="design-index-full">
         {
@@ -127,60 +145,10 @@ function DesignIndex() {
         }
       </div>
     </section>
-    // </ChakraProvider>
-   
   )
 }
 
-{/* <div>
-{designs.map(design) => (
-  design.name
-)}
-</div> */}
 
 
 export default DesignIndex
 
-{/* <label className="label">Pick a product type </label>
-<div className="select">
-  <select name="category" onChange={handleCategoryFilter}>
-    <option value="all">All</option>
-    <option value="dress">Dress</option>
-    <option value="top">Playsuit</option>
-    <option value="jumper">Jumper</option>
-    <option value="trouser">Trouser</option>
-  </select>
-</div>
-// </div> */}
-
-// const handleCategoryFilter = (e) => {
-//   setSelectInput(e.target.value)
-// }
-
-// const handleChange = () => {
-//   return designs.filter(design => {
-//     return selectInput === 'all' || design.product === selectInput
-//   })
-// }
-
-
-{/* <section className="design-index-page">
-  <div>
-    <Stack spacing={4}>
-      <InputGroup>
-        <InputLeftElement 
-          pointerEvents="none"
-          children={<Search2Icon color="grey.300" />}
-        />
-        <input className="input" placeholder="Search" onChange={handleSearch}/>
-      </InputGroup>
-    </Stack>
-  </div>
-  <div className="design-index-full">
-    {
-      designs && handleChange().map(design => (
-        <DesignIndexCard key={design._id} design={design}/>
-      ))
-    }
-  </div>
-</section>  */}

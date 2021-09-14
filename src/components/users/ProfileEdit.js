@@ -52,7 +52,7 @@ function ProfileEdit() {
         <div className="image-change-button">
           <ImageUploadField 
             onChange={handleImageUpload}
-            labelText="Change"
+            labelText="Change profile picture"
             name="profileImage"
             value={formData.profileImage}
           />

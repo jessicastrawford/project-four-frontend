@@ -7,8 +7,11 @@ function DesignIndexCard({ design }) {
         <figure>
           <img src={design.image} alt={design.name} className="design-index-images"/>
         </figure>
-        <div className="name">{design.name}</div>
-        <div className="name">Added by: {design.addedBy.username}</div>
+        <div className="design-info">
+          <div className="name">{design.name}</div>
+          <div className="name">Added by: {design.addedBy.username}</div>
+        </div>
+        
       </Link>
     </section>
   )

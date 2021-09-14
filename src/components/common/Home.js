@@ -141,11 +141,11 @@ function Home() {
 
   return (
     <>
+      <div className="scroll-button">
+        <p>Want to sign up to Design Feed?</p>
+        <ScrollButton className="button"/>
+      </div> 
       <section className="gallery-grid">
-        <div className="scroll-button">
-          <p>Want to sign up?</p>
-          <ScrollButton className="button"/>
-        </div> 
         <div className="grid">
           <Masonry
             className={'photo-list'}

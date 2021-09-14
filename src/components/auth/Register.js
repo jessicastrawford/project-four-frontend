@@ -48,7 +48,6 @@ function Register() {
 
   const handleImageUpload = (imageUrl, name) => {
     setFormData({ ...formData, [name]: imageUrl })
-    // console.log(name)
   }
 
   console.log(formData)
