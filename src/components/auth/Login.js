@@ -39,7 +39,7 @@ function Login() {
   return (
 
     <section className="login-section">
-      <form>
+      <form className="login">
         <input
           className="login-input"
           placeholder="Username"

@@ -49,7 +49,10 @@ body {
       padding: 10px 12px;
       border-radius: 20px;
       color: white;
-      margin-right: 20px;
+      // margin-right: 5px;
+      border:none;
+      font-size: 15px;
+      font-weight: bold;
     }
     .login-button:hover{
         background-color: $hover_red;
@@ -109,8 +112,10 @@ body {
     position: relative;
     padding: 23px;
     width: 100%;
-    max-width: 640px;
+    max-width: 400px;
     background-color: white;
+    height: 250px;
+    border-radius: 20px;
     .close-button{
       position: absolute;
       top: 16px;
@@ -119,61 +124,196 @@ body {
   }
 }
 
-// .login-section{
-// .toast-popup{
-//   max-width: 30px;
-// }
-// }
-
-
-// HOME
-
-.scroll-button{
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-
-  .homepage-scroll-button{
-    background-color: white;
-    border: none;
-    font-size: 25px;
-    color: $red;
-    // margin-top: 7px;
-    cursor: pointer;
-
-  }
-}
-
-.gallery-grid{
-  margin-top: 30px;
-  .photo-list {
-    max-width: 100%;
-    list-style: none;
-    // margin: 0 auto;
+.login-section{
+  .login{
     display: flex;
-    justify-content: center;
-    margin-left: 15px;
-  }
-  
-  .photo-item {
-    display: flex;
-    width: 300px;
-    margin: 10px 0;
-  }
-  
-  .photo-item img {
-    display: flex;
-    width: 100%;
-    border-radius: 20px;
-  }
-  .scroll-button {
-    display: flex;
-    .button{
-      background-color: white;
+    flex-direction: column;
+    height: 200px;
+    justify-content: space-between;
+    margin-top: 50px;
+    align-items: center;
+    .login-input{
+      height: 30px;
+      width: 300px;
+      border-radius: 15px;
+      border: none;
+      background-color: $light_grey;
+    }
+    .login-button{
+      padding: 12px 15px;
+      border-radius: 22px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      color:white;
+      background-color: $red;
+    }
+    .login-button:hover{
+      background-color: $hover_red;
     }
   }
 }
+.close-button{
+  padding: 12px 15px;
+  border-radius: 22px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  background-color: $light_grey;
+}
+.close-button:hover{
+  background-color: $hover_grey;
+}
 
+// REGISTER
+.register-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items:center;
+  .text-input{
+    background-color: $light_grey;
+    border: none;
+    height: 35px;
+    width: 400px;
+    border-radius: 15px;
+    margin: 20px 0;
+  }
+  .image-upload{
+    font-weight: normal;
+    margin-right: 160px;
+  }
+  .signup-button{
+    padding: 12px 15px;
+    border-radius: 22px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    color:white;
+    background-color: $red;
+    margin: 20px 0;
+  }
+  .member{
+    a{
+      text-decoration: none;
+      color:$red
+    }
+
+  }
+  margin-bottom: 100px;
+}
+
+// HOME
+.home-page{
+  margin-bottom: 100px;
+  .scroll-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  
+    .homepage-scroll-button{
+      background-color: white;
+      border: none;
+      font-size: 25px;
+      color: $red;
+      // margin-top: 7px;
+      cursor: pointer;
+  
+    }
+  }
+  
+  .gallery-grid{
+    margin-top: 30px;
+    .photo-list {
+      max-width: 100%;
+      list-style: none;
+      // margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      margin-left: 15px;
+    }
+    
+    .photo-item {
+      display: flex;
+      width: 300px;
+      margin: 10px 0;
+    }
+    
+    .photo-item img {
+      display: flex;
+      width: 100%;
+      border-radius: 20px;
+    }
+    .scroll-button {
+      display: flex;
+      .button{
+        background-color: white;
+      }
+    }
+  }
+  .sign-up{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p{
+      padding: 5px;
+    }
+    .sign-up{
+      margin-top: 10px;
+      padding: 12px 15px;
+      border-radius: 22px;
+      font-size: 16px;
+      border:none;
+      color:white;
+      background-color: $red;
+    }
+    .sign-up:hover{
+      background-color: $hover_red;
+    }
+  }
+  
+}
+
+
+// ABOUT PAGE
+
+.about-page{
+  text-align: center;
+  width: 100vw;
+  margin-top: 15vh;
+
+  .text-box{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: $red;
+width: 300px;
+height: 300px;
+margin: 0 auto;
+border-radius: 50%;
+padding: 10px;
+
+.text{
+  color: white;
+  padding: 10px 0;
+}
+.social{
+  padding:10px 0; 
+
+  .github:hover{
+    transform:scale(1.1);
+  }
+  .linkdin:hover{
+    transform:scale(1.1);
+  }
+}
+  }
+}
 
 
 // HOME 
@@ -327,22 +467,169 @@ body {
 // PROFILE SHOW
 
 .profile-show-section{
-  .profile-image{
-    // display: flex;
-    // justify-content: center;
+  margin-bottom: 100px;
+  .user-information{
+    width: 200px;
     margin: 0 auto;
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+    text-align: center;
+    .name{
+      font-size: 1.5em;
+      padding: 5px 0;
+    }
+    .username{
+      font-weight: normal;
+      padding: 5px 0;
+      margin-bottom: 10px;
+    }
+    .edit-button{
+      background-color: $light_grey;
+      padding: 12px 15px;
+      border-radius: 22px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      
+    }
+    .edit-button:hover{
+      background-color: $hover_grey;
+    }
+    .profile-image{
+      margin: 0 auto;
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+  }
+  .icons{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 30px;
+    .publish-icon{
+      margin-left: 20px;
+    }
+    .share-icon{
+      margin-right: 20px;
+    }
+  }
+  
+.added-designs{
+  .title-added{
+    font-size: 1.3em;
   }
 
+  .add-designs-section{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 400px;
+    margin: 0 auto;
+    .upload-button{
+      background-color: $light_grey;
+      padding: 12px 15px;
+      border-radius: 22px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+    }
+    .upload-button:hover{
+      background-color: $hover_grey;
+    }
+  }
+  .full-page-added{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  
+    .added-design-grid{
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+      margin: 10px;
+      .added-images{
+        margin-top: 25px;
+        width: 250px;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+      .added-images:hover{
+        filter: brightness(80%);
+      }
+      .delete-button{
+        background-color: $light_grey;
+        padding: 12px 15px;
+        border-radius: 22px;
+        font-weight: bold;
+        font-size: 16px;
+        border: none;
+        margin: 15px 0;
+      }
+      .delete-button:hover{
+        background-color: $hover_grey;
+      }
+    }
+  }
+  
 }
+.saved-designs{
+  margin-top: 80px;
+  .saved-title{
+    text-align: center;
+    font-size: 1.3em;
+  }
+  .saved-designs-sections{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 400px;
+    margin: 0 auto;
+  }
+}
+.full-page-added-saved{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .saved-design-grid{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 10px;
+    .saved-images{
+      margin-top: 25px;
+      width: 250px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    .saved-images:hover{
+      filter: brightness(80%)
+    }
+  }
+}
+}
+// .saved-designs-section{
+//   .saved-title{
+//     text-align: center;
+//   }
+//   .saved-design-grid{
+//     display: flex;
+//     flex-direction: column;
+//     width: 250px;
+//     .saved-images{
+//       width: 250px;
+//       height: 350px;
+//       object-fit: cover;
+//       border-radius: 20px;
+//     }
+//   }
+// }
+
 
 // DESIGN SHOW PAGE
-// box-shadow:0 0 1px rgba(0, 0, 0, 0);
 
 .design-show-page{
+  margin-bottom: 100px;
   margin-top: 40px;
   .arrow{
     width: 35px;
@@ -584,12 +871,309 @@ body {
       height: 400px;
       border-radius: 20px;
     }
+    .more-images:hover{
+      filter: brightness(80%)
+    }
   }
 }
 
 
 .table{
   width: 450px;
+}
+
+// DESIGN UPLOAD 
+
+.form-upload{
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .name-field{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    .name-input{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      border-radius: 15px;
+      width: 400px;
+    }
+    .label{
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+  }
+  .description-field{
+    display:flex;
+    flex-direction: column;
+    margin: 10px 0;
+    .description-textarea{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      border-radius: 15px;
+      width: 400px;
+      resize: none;
+    }
+    .label{
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+  }
+  .fabric-field{
+    display:flex;
+    flex-direction: column;
+    margin: 10px 0;
+    .fabric-input{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      border-radius: 15px;
+      width: 400px;
+    }
+    .label{
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+  }
+  .season-dropdown{
+    display: flex;
+    flex-direction: column;
+
+    .season-input{
+      background-color: $light_grey;
+      height: 30px;
+      border-radius: 15px;
+      width: 400px;
+      // line-height: 1.2;
+    }
+    .label{
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+  }
+  .product-dropdown{
+    display: flex;
+    flex-direction: column;
+
+    .product-input{
+      background-color: $light_grey;
+      height: 30px;
+      border-radius: 15px;
+      width: 400px;
+    }
+    .label{
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+  }
+  .colour-dropdown{
+    display: flex;
+    flex-direction: column;
+
+    .colour-input{
+      background-color: $light_grey;
+      height: 30px;
+      border-radius: 15px;
+      width: 400px;
+    }
+    .label{
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+  }
+  .size-dropdown{
+    display: flex;
+    flex-direction: column;
+
+    .size-input{
+      background-color: $light_grey;
+      height: 30px;
+      border-radius: 15px;
+      width: 400px;
+    }
+    .label{
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+  }
+  .print-checkbox{
+    margin-right: 340px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    .label{
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+  }
+  .image-upload-field{
+    // display: flex;
+    margin-right: 160px;
+    font-weight: normal;
+    margin-bottom: 25px;
+  }
+  .drawing-upload-field{
+    // display: flex;
+    margin-right: 160px;
+    font-weight: normal;
+    margin-bottom: 25px;
+  }
+  .measurements-section{
+    .show-measurement-button{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      width: 400px;
+      border-radius: 15px;
+    }
+    .show-measurement-button:hover{
+      background-color: $hover_grey;
+    }
+    .cb-length{
+      display: flex;
+      flex-direction: column;
+    }
+    .measurement-field{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      width: 400px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+    }
+    .label{
+      font-weight: normal;
+    }
+    .cf-length{
+      display: flex;
+      flex-direction: column;
+    }
+    .measurement-field{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      width: 400px;
+      border-radius: 15px;
+    }
+    .label{
+      font-weight: normal;
+    }
+    .sleeve-length{
+      display: flex;
+      flex-direction: column;
+    }
+    .measurement-field{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      width: 400px;
+      border-radius: 15px;
+    }
+    .label{
+      font-weight: normal;
+    }
+    .hem-length{
+      display: flex;
+      flex-direction: column;
+    }
+    .measurement-field{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      width: 400px;
+      border-radius: 15px;
+    }
+    .label{
+      font-weight: normal;
+    }
+    .chest{
+      display: flex;
+      flex-direction: column;
+    }
+    .measurement-field{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      width: 400px;
+      border-radius: 15px;
+    }
+    .label{
+      font-weight: normal;
+    }
+    .waist{
+      display: flex;
+      flex-direction: column;
+    }
+    .measurement-field{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      width: 400px;
+      border-radius: 15px;
+    }
+    .label{
+      font-weight: normal;
+    }
+    .il-length{
+      display: flex;
+      flex-direction: column;
+    }
+    .measurement-field{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      width: 400px;
+      border-radius: 15px;
+    }
+    .label{
+      font-weight: normal;
+    }
+    .ol-length{
+      display: flex;
+      flex-direction: column;
+    }
+    .measurement-field{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      width: 400px;
+      border-radius: 15px;
+    }
+    .label{
+      font-weight: normal;
+    }
+  }
+  .buttons{
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    margin-top: 25px;
+    .cancel-button{
+      background-color: $light_grey;
+      padding: 12px 15px;
+      border-radius: 22px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+    }
+    .cancel-button:hover{
+      background-color: $hover_grey;
+    }
+    .save-button{
+      background-color: $red;
+      padding: 12px 15px;
+      border-radius: 22px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      color:white;
+    }
+    .save-button:hover{
+      background-color: $hover_red;
+    }
+  }
 }
 
 // FOOTER

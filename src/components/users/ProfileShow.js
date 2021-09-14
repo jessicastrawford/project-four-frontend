@@ -5,6 +5,11 @@ import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { deleteADesign } from '../../lib/api'
 
+import CreateIcon from '@material-ui/icons/Create'
+import PublishIcon from '@material-ui/icons/Publish'
+import ShareIcon from '@material-ui/icons/Share'
+import AddIcon from '@material-ui/icons/Add'
+
 function ProfileShow() {
 
   const [profile, setProfile] = React.useState('')
@@ -33,9 +38,6 @@ function ProfileShow() {
     history.push('/design-upload')
   }
 
-  // console.log('hello',profile.savedDesigns)
-  // console.log('hi', profile.addedDesigns)
-
   const handleDeleteDesign = async (e) => {
     try {
       console.log('clicked for delete', e.target.value)
@@ -51,31 +53,52 @@ function ProfileShow() {
 
   return (
     <section className="profile-show-section">
-      <img src={profile.profileImage} alt="profile-image" className="profile-image"/>
-      <button onClick={handleClick}>Edit</button>
-      <p>{profile.firstName} {profile.lastName}</p>
-      <p>{profile.username}</p>
+      <div className="user-information">
+        <img src={profile.profileImage} alt="profile-image" className="profile-image"/>
+        <p className="name">{profile.firstName} {profile.lastName}</p>
+        <p className="username">@{profile.username}</p>
+        {/* <p>26 followers - 11 following</p> */}
+        <button onClick={handleClick} className="edit-button">Edit</button>
+      </div>
+      <div className="icons">
+        <div>
+          <CreateIcon />
+          <PublishIcon className="publish-icon"/>
+        </div>
+        <div>
+          <ShareIcon className="share-icon"/>
+          <AddIcon />
+        </div>
+      </div>
       <div className="added-designs">
-        <p>Your Designs</p>
-        <button onClick={handleUpload}>Upload your designs</button>
-        {profile && profile.addedDesigns.map(addedDesign => (
-          <>
-            <Link to={`/designs/${addedDesign.id}`}>
-              <img key={addedDesign.name} src={addedDesign.image}/>
-            </Link>
-            <button onClick={handleDeleteDesign} value={addedDesign.id}>Delete design</button>
-          </>
-        ))}
+        <div className="add-designs-section">
+          <p className="title-added">Your designs</p>
+          <button onClick={handleUpload} className="upload-button">Upload a design</button>
+        </div>
+        <div className="full-page-added">
+          {profile && profile.addedDesigns.map(addedDesign => (
+            <div className="added-design-grid" key={addedDesign.name}>
+              <Link to={`/designs/${addedDesign.id}`}>
+                <img src={addedDesign.image} className="added-images"/>
+              </Link>
+              <button onClick={handleDeleteDesign} value={addedDesign.id}className="delete-button">Delete design</button>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="saved-designs">
-        <p>Saved Designs</p>
-        {profile && profile.savedDesigns.map(savedDesign => (
-          <>
-            <Link to={`/designs/${savedDesign.id}`}> 
-              <img key={savedDesign.name} src={savedDesign.image}/>
-            </Link>
-          </>
-        ))}
+        <div className="saved-designs-section">
+          <p className="saved-title">Your saved designs</p>
+          <div className="full-page-added-saved">
+            {profile && profile.savedDesigns.map(savedDesign => (
+              <div className="saved-design-grid" key={savedDesign.name}>
+                <Link to={`/designs/${savedDesign.id}`}> 
+                  <img src={savedDesign.image} className="saved-images"/>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
     

@@ -3,6 +3,7 @@ import React from 'react'
 import Masonry from 'react-masonry-component'
 import ScrollButton from './ScrollButton'
 import Footer from '../common/Footer'
+import { useHistory } from 'react-router-dom'
 
 // const { scaleDown } = transitions
 
@@ -139,13 +140,19 @@ function Home() {
     itemSelector: '.photo-item',
   }
 
+  const history = useHistory()
+
+  const handleClick = () => {
+    history.push('/sign-up')
+  }
+
   return (
-    <>
+    <section className="home-page">
       <div className="scroll-button">
         <p>Want to sign up to Design Feed?</p>
         <ScrollButton className="button"/>
       </div> 
-      <section className="gallery-grid">
+      <div className="gallery-grid">
         <div className="grid">
           <Masonry
             className={'photo-list'}
@@ -160,12 +167,14 @@ function Home() {
               </li>
             ))}
           </Masonry>
-
         </div>
-     
-      </section>
-      <Footer />
-    </>
+      </div>
+      <div className="sign-up">
+        <p>Sign up to become a member of Design Feed.</p>
+        <p>A hub for designers to give and recieve feedback on their work.</p>
+        <button onClick={handleClick} className="sign-up">Sign up</button>
+      </div>
+    </section>
 
   )
 
@@ -173,16 +182,3 @@ function Home() {
 
 export default Home
 
-
-{/* <StackGrid 
-columnWidth={120}
-// appear={scaleDown.appear}
-// appeared={scaleDown.appeared}
-// enter={scaleDown.enter}
-// entered={scaleDown.entered}
-// leaved={scaleDown.leaved}
->
-<div><img className="grid-image" src="https://assets.vogue.com/photos/5d9663603b257600087ff805/master/pass/00-promo%20(5).jpg" /></div>
-<div><img className="grid-image" src="https://assets.vogue.com/photos/5d9663603b257600087ff805/master/pass/00-promo%20(5).jpg"/></div>
-<div><img className="grid-image" src="https://assets.vogue.com/photos/5d9663603b257600087ff805/master/pass/00-promo%20(5).jpg"/></div>
-</StackGrid> */}
