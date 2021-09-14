@@ -3,13 +3,16 @@ import { useParams } from 'react-router-dom'
 import { getSingleDesign, createAComment, getSingleUser, saveUnsaveDesign, profileView } from '../../lib/api'
 import axios from 'axios'
 import { isAuthenticated, getUserId } from '../../lib/auth'
+import { Link } from 'react-router-dom'
 import ReactStars from 'react-star-rating-component'
 import MeasurementTable from './MeasurementTable'
+import { useHistory } from 'react-router-dom'
 
 import Moment from 'react-moment'
 import 'moment-timezone'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import PublishIcon from '@material-ui/icons/Publish'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 function DesignShow() {
 
@@ -160,8 +163,19 @@ function DesignShow() {
     }
   }
 
+
+  const history = useHistory()
+
+  const handleClickBack = () => {
+    history.push('/designs')
+  }
+
+
   return (
     <section className="design-show-page">
+      <div>
+        <ArrowBackIcon onClick={handleClickBack} className="arrow"/>
+      </div>
       <div className="box-section">
         <div className="image-section">
           <img src={design.image} alt={design.name} />
@@ -203,7 +217,7 @@ function DesignShow() {
         </div>
       </div>
       <form>
-        <p className="title-adding-comment">Add your comment and rating below</p>
+        <p className="title-adding-comment">Add your comment and rating below:</p>
         <div className="text-box">
           <div className="stars">
             <ReactStars
@@ -228,7 +242,7 @@ function DesignShow() {
           <div className="buttons">
             {isAuthenticated ?  <button onClick={handleSubmit} className="submit">Submit</button> : <button>Log in to comment</button>}
             {/* <TextArea placeholder="Enter your comment here"/> */}
-            <button className="cancel">Cancel</button>
+            {/* <button className="cancel">Cancel</button> */}
           </div>
         </div>
       </form>
@@ -256,15 +270,24 @@ function DesignShow() {
           </div>
         ))}</div>
       </div>
-      <img src={design.designDrawing}/>
       <div>
-        <MeasurementTable design={design}/>
+        <div className="measurement-drawing-section">
+          {design.designDrawing ? <img src={design.designDrawing} className="technical-drawing"/> : <p className="text-error">*No design drawing uploaded*</p>}
+          <div className="measurement-table">
+            <p className="technical-title">Technical Drawing and Measurements:</p>
+            <MeasurementTable design={design}/>
+          </div>
+        </div>
       </div>
+      <h1 className="more-title">More {design.product}s</h1>
       <div className="more-like-this-section">
-        <h1>More {design.product}s...</h1>
         {designs && filteredDesigns.slice(0, 4).map(design => (
           <div key={design._id}>
-            <img src={design.image} />
+            <> 
+              <Link to={`/designs/${design.id}`} >
+                <img src={design.image} className="more-images" />
+              </Link>
+            </>
           </div>
         ))}
       </div>
