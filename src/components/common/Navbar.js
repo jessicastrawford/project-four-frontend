@@ -15,8 +15,10 @@ function Navbar() {
 
   const handleLogout = () => {
     logout()
+    setButtonPopup(false)
     history.push('/')
     console.log('clicked')
+
   }
 
 
@@ -24,9 +26,12 @@ function Navbar() {
   return (
     <nav>
       <div className="navbar">
-        <div>  
+        <div className="logo-title">  
           <NavLink to="/"><img src={logo} alt="logo" className="navbar-logo"/></NavLink>
           {/* <NavLink to="/">Design Feed</NavLink> */}
+          {!isLoggedIn && 
+          <NavLink to="/" className="title">Design Feed</NavLink>
+          }
         </div>
         <div className="buttons">
           <NavLink to="/about" className="about-button">About</NavLink>

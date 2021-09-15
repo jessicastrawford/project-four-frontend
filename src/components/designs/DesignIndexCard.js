@@ -9,7 +9,7 @@ function DesignIndexCard({ design }) {
         </figure>
         <div className="design-info">
           <div className="name">{design.name}</div>
-          <div className="name">Added by: {design.addedBy.username}</div>
+          <div className="username">Added by: {design.addedBy.username}</div>
         </div>
         
       </Link>

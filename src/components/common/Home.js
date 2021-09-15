@@ -2,8 +2,8 @@
 import React from 'react'
 import Masonry from 'react-masonry-component'
 import ScrollButton from './ScrollButton'
-import Footer from '../common/Footer'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
+import { isAuthenticated } from '../../lib/auth'
 
 // const { scaleDown } = transitions
 
@@ -146,12 +146,16 @@ function Home() {
     history.push('/sign-up')
   }
 
+  const isLoggedIn = isAuthenticated()
+  useLocation()
+
   return (
     <section className="home-page">
+      {!isLoggedIn && 
       <div className="scroll-button">
         <p>Want to sign up to Design Feed?</p>
         <ScrollButton className="button"/>
-      </div> 
+      </div> }
       <div className="gallery-grid">
         <div className="grid">
           <Masonry
@@ -169,11 +173,13 @@ function Home() {
           </Masonry>
         </div>
       </div>
+      {!isLoggedIn && 
       <div className="sign-up">
         <p>Sign up to become a member of Design Feed.</p>
-        <p>A hub for designers to give and recieve feedback on their work.</p>
+        <p>A space where designers can give and recieve feedback on their work.</p>
         <button onClick={handleClick} className="sign-up">Sign up</button>
       </div>
+      }
     </section>
 
   )

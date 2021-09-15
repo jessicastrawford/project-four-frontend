@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import ReactStars from 'react-star-rating-component'
 import MeasurementTable from './MeasurementTable'
 import { useHistory } from 'react-router-dom'
+import Loading from '../common/Loading'
 
 import Moment from 'react-moment'
 import 'moment-timezone'
@@ -26,6 +27,8 @@ function DesignShow() {
   const [isClicked, setIsClicked] = React.useState(false)
   const [isSaved, setIsSaved] = React.useState(false)
   const [comments, setComments] = React.useState('')
+  const [isError, setIsError] = React.useState(false)
+  const isLoading = !designs && !isError
 
   
   isAuthenticated()
@@ -51,6 +54,7 @@ function DesignShow() {
       
       } catch (err){
         console.log(err)
+        setIsError(true)
       }
     }
     getData()
@@ -63,6 +67,7 @@ function DesignShow() {
       setFormData({ ...formData, [e.target.name]: e.target.value })
     } catch (err) {
       console.log(err)
+      setIsError(true)
     }
   }
   console.log(formData.text)
@@ -75,6 +80,7 @@ function DesignShow() {
         console.log(res.data)
       } catch (err) {
         console.log(err)
+        setIsError(true)
       } 
     }
     getData()
@@ -96,6 +102,7 @@ function DesignShow() {
       // formData.text = ''
     } catch (err) {
       console.log(err)
+      setIsError(true)
     }
   }
 
@@ -169,13 +176,19 @@ function DesignShow() {
   const handleClickBack = () => {
     history.push('/designs')
   }
+  
+  console.log('added-by', design.comments)
 
+  // const handleViewProfile = () => {
+  //   history.push(`profile/${design.addedBy.id}`)
+  // }
 
   return (
     <section className="design-show-page">
       <div>
         <ArrowBackIcon onClick={handleClickBack} className="arrow"/>
       </div>
+      {/* {isLoading && <Loading />} */}
       <div className="box-section">
         <div className="image-section">
           <img src={design.image} alt={design.name} />
@@ -205,13 +218,18 @@ function DesignShow() {
             </div>
             <div className="added-by">
               <div className="profile">
-                <img src={design && design.addedBy.profileImage} className="added-by-image"/>
+                <Link to={design && `/profile/${design.addedBy.id}`} >
+                  <img src={design && design.addedBy.profileImage} className="added-by-image"/>
+                  {/* <p>{design.addedBy.id}</p> */}
+                </Link>
                 <div>
                   <p>Added by: </p> 
                   <p className="name">{design && design.addedBy.username}</p>
                 </div>
               </div>
-              <button className="follow-button">View Profile</button>
+              <Link to={design && `/profile/${design.addedBy.id}`} >
+                <button className="follow-button">View Profile</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -249,25 +267,27 @@ function DesignShow() {
       <div className="comment-section">
         {/* <h1 className="comment-header">Comments...</h1> */}
         <div className="comment-boxes">{design && design.comments.map(comment => (
-          <div key={design.id} className="individual-comment-box">
-            <div className="profile-comment">
-              <img src={comment.owner.profileImage} className="profile-image"/>
-              <p>Added by {comment.owner.username},<br/> <Moment fromNow >{comment.createdAt}</Moment></p>
+          <Link to={design && `/profile/${comment.owner.id}`} key={design.id}>
+            <div key={design.id} className="individual-comment-box">
+              <div className="profile-comment">
+                <img src={comment.owner.profileImage} className="profile-image"/>
+                <p>Added by {comment.owner.username},<br/> <Moment fromNow >{comment.createdAt}</Moment></p>
+              </div>
+              <div className="ratings-and-text">
+                <ReactStars 
+                  count={5}
+                  size={20}
+                  half={false}
+                  value={comment.rating}
+                  emptyIcon={<i className="far fa-star"></i>}s
+                  fullIcon={<i className="fa fa-star"></i>}
+                  edit={false}
+                  starColor={'red'}
+                />
+                <p>&quot;{comment.text}&quot;</p>
+              </div>
             </div>
-            <div className="ratings-and-text">
-              <ReactStars 
-                count={5}
-                size={20}
-                half={false}
-                value={comment.rating}
-                emptyIcon={<i className="far fa-star"></i>}s
-                fullIcon={<i className="fa fa-star"></i>}
-                edit={false}
-                starColor={'red'}
-              />
-              <p>&quot;{comment.text}&quot;</p>
-            </div>
-          </div>
+          </Link>
         ))}</div>
       </div>
       <div>

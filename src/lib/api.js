@@ -30,7 +30,11 @@ export function getSingleUser() {
 
 
 export function editUser(userId, formData) {
-  return axios.put(`${baseUrl}/auth/users/${userId}`, formData, headers())
+  return axios.put(`${baseUrl}/auth/profile/${userId}/`, formData, headers())
+}
+
+export function showUserProfile(userId) {
+  return axios.get(`${baseUrl}/auth/profile/${userId}/`, headers())
 }
 
 // DESIGN REQUESTS

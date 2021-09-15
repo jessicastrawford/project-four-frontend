@@ -6,7 +6,11 @@ import { registerUser, loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
 import { Link } from 'react-router-dom'
 
+
+
 function Register() {
+
+  const [error, setError] = React.useState(false)
 
   const [formData, setFormData] = React.useState({
     firstName: '',
@@ -40,6 +44,7 @@ function Register() {
       history.push('/designs')
     } catch (err) {
       console.log(err)
+      setError(true)
     }
   }
 
@@ -57,16 +62,17 @@ function Register() {
       <h1>Please sign up below</h1>
       <div>
         <input 
-          placeholder="First name"
+          placeholder="First name*"
           name="firstName"
           value={formData.firstName}
           onChange={handleChange}
           className="text-input"
+          required
         />
       </div>
       <div>
         <input 
-          placeholder="Last name"
+          placeholder="Last name*"
           name="lastName"
           value={formData.lastName}
           onChange={handleChange}
@@ -75,7 +81,7 @@ function Register() {
       </div>
       <div>
         <input 
-          placeholder="Username"
+          placeholder="Username*"
           name="username"
           value={formData.username}
           onChange={handleChange}
@@ -84,7 +90,7 @@ function Register() {
       </div>
       <div>
         <input 
-          placeholder="Email address"
+          placeholder="Email address*"
           name="email"
           value={formData.email}
           onChange={handleChange}
@@ -93,7 +99,7 @@ function Register() {
       </div>
       <div>
         <input 
-          placeholder="Password"
+          placeholder="Password*"
           name="password"
           type="password"
           value={formData.password}
@@ -103,7 +109,7 @@ function Register() {
       </div>
       <div>
         <input 
-          placeholder="Password confirmation"
+          placeholder="Password confirmation*"
           name="passwordConfirmation"
           type="password"
           value={formData.passwordConfirmation}
@@ -132,11 +138,16 @@ function Register() {
       <div className="image-upload">
         <ImageUploadField 
           onChange={handleImageUpload}
-          labelText="Upload a profile picture"
+          labelText="Upload a profile picture*"
           name="profileImage"
           value={formData.profileImage}
         />
       </div>
+      {error && 
+        <>
+          <p className="error-message">Please fill in the above required fields*</p>
+        </>
+      }
       <button type="submit" className="signup-button" onClick={handleSubmit}>Sign up</button>
       <p className="member">Already a member? <Link to="/log-in">Log in</Link></p>
       {/* <button type="submit" className="button login-button" onClick={handleLogIn}>Already have an account? Log in</button> */}

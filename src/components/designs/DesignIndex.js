@@ -8,6 +8,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
+import Loading from '../common/Loading'
 
 function DesignIndex() {
 
@@ -17,6 +18,8 @@ function DesignIndex() {
   const [selectColourInput, setSelectColourInput] = React.useState('all')
   const [selectSizeInput, setSelectSizeInput] = React.useState('all')
   const [selectSeasonInput, setSelectSeasonInput] = React.useState('all')
+  const [isError, setIsError] = React.useState(false)
+  const isLoading = !designs && !isError
   
   React.useEffect(()=> {
     const getData = async () => {
@@ -26,6 +29,7 @@ function DesignIndex() {
         console.log(res.data)
       } catch (err) {
         console.log(err)
+        setIsError(true)
       } 
     }
     getData()
@@ -136,6 +140,7 @@ function DesignIndex() {
           </FormControl>
         </div>
       </div>
+      {isLoading && <Loading />}
       <div className="design-index-full">
         {
           designs && handleChange().map(design => (

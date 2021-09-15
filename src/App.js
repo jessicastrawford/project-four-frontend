@@ -12,6 +12,7 @@ import ProfileShow from './components/users/ProfileShow'
 import ProfileEdit from './components/users/ProfileEdit'
 import DesignUpload from './components/designs/DesignUpload'
 import Scroll from './components/auth/Scroll'
+import OtherUsersProfileShow from './components/users/OtherUsersProfileShow'
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
           <Route path="/designs">
             <DesignIndex />
           </Route>
+          <Route path="/profile/:userId">
+            < OtherUsersProfileShow/>
+          </Route>
           <Route path="/profile">
             <ProfileShow />
           </Route>
@@ -49,10 +53,7 @@ function App() {
           </Route>
         </Switch>
       </Scroll>
-     
     </BrowserRouter>
-
-   
   )
 
 }

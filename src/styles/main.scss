@@ -28,14 +28,29 @@ body {
   // background-color: white;
   // z-index: 999;
   // width: 100%;
-  .navbar-logo{
-    height: 50px;
-    margin-left: 20px;
-    border-radius: 50%;
+  .logo-title{
+    display: flex;
+    align-items: center;
+    .navbar-logo{
+      height: 50px;
+      margin-left: 20px;
+      border-radius: 50%;
+    }
+    .navbar-logo:hover{
+      background-color: $hover_grey;
+    }
+    .title{
+      text-decoration: none;
+      color: $red;
+      font-size: 19px;
+      margin-left: 13px;
+    }
+    .title:hover{
+      border-bottom: 0.5px solid $red;
+
+    }
   }
-  .navbar-logo:hover{
-    background-color: $hover_grey;
-  }
+ 
   .buttons{
     display: flex;
     align-items: center;
@@ -46,12 +61,13 @@ body {
     }
     .login-button{
       background-color: $red;
+      cursor: pointer;
       padding: 10px 12px;
       border-radius: 20px;
       color: white;
       // margin-right: 5px;
       border:none;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: bold;
     }
     .login-button:hover{
@@ -120,6 +136,7 @@ body {
       position: absolute;
       top: 16px;
       right: 16px;
+      cursor: pointer;
     }
   }
 }
@@ -147,6 +164,7 @@ body {
       border: none;
       color:white;
       background-color: $red;
+      cursor: pointer;
     }
     .login-button:hover{
       background-color: $hover_red;
@@ -193,15 +211,23 @@ body {
     color:white;
     background-color: $red;
     margin: 20px 0;
+    cursor: pointer;
+  }
+  .signup-button:hover{
+    background-color: $hover_red;
   }
   .member{
     a{
-      text-decoration: none;
+      // text-decoration: none;
       color:$red
     }
 
   }
   margin-bottom: 100px;
+  .error-message{
+    margin-top: 25px;
+    color: $red;
+  }
 }
 
 // HOME
@@ -259,6 +285,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
     p{
       padding: 5px;
     }
@@ -267,9 +294,11 @@ body {
       padding: 12px 15px;
       border-radius: 22px;
       font-size: 16px;
+      font-weight: bold;
       border:none;
       color:white;
       background-color: $red;
+      cursor: pointer;
     }
     .sign-up:hover{
       background-color: $hover_red;
@@ -292,8 +321,8 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color: $red;
-width: 300px;
-height: 300px;
+width: 400px;
+height: 400px;
 margin: 0 auto;
 border-radius: 50%;
 padding: 10px;
@@ -303,7 +332,7 @@ padding: 10px;
   padding: 10px 0;
 }
 .social{
-  padding:10px 0; 
+  padding:25px 0; 
 
   .github:hover{
     transform:scale(1.1);
@@ -312,6 +341,51 @@ padding: 10px;
     transform:scale(1.1);
   }
 }
+.annimation-title{
+  color: white;
+  font-size: 25px;
+}
+  }
+  .find-out-more-button{
+    padding: 12px 15px;
+    border-radius: 22px;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: white;
+    border: none;
+    color: $red;
+    cursor: pointer;
+  }
+  .find-out-more-button:hover{
+    background-color: $hover_grey;
+  }
+  .more-info-section{
+    // background-color: rgb(238, 238, 238);
+    width: 600px;
+    padding: 110px 100px 70px 100px;
+    border-radius: 50px;
+    margin: 0 auto;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.15);
+    font-weight: normal;
+
+    .title{
+      font-size: 70px;
+      padding-bottom: 12px;
+    }
+    .back-button{
+      background-color: $red;
+      padding: 12px 15px;
+      border-radius: 22px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      color:white;
+      cursor: pointer;
+      margin-top: 40px;
+    }
+    .back-button:hover{
+      background-color: $hover_red;
+    }
   }
 }
 
@@ -456,6 +530,10 @@ padding: 10px;
       text-align: center;
       // padding-bottom: 10px;
     }
+    .username{
+      text-align: center;
+      font-weight: normal;
+    }
   }
 
   a{
@@ -488,6 +566,7 @@ padding: 10px;
       font-weight: bold;
       font-size: 16px;
       border: none;
+      cursor: pointer;
       
     }
     .edit-button:hover{
@@ -531,6 +610,7 @@ padding: 10px;
       font-weight: bold;
       font-size: 16px;
       border: none;
+      cursor: pointer;
     }
     .upload-button:hover{
       background-color: $hover_grey;
@@ -1016,7 +1096,7 @@ padding: 10px;
   }
   .drawing-upload-field{
     // display: flex;
-    margin-right: 160px;
+    margin-right: 80px;
     font-weight: normal;
     margin-bottom: 25px;
   }
@@ -1027,6 +1107,7 @@ padding: 10px;
       height: 30px;
       width: 400px;
       border-radius: 15px;
+      cursor: pointer;
     }
     .show-measurement-button:hover{
       background-color: $hover_grey;
@@ -1157,6 +1238,7 @@ padding: 10px;
       font-weight: bold;
       font-size: 16px;
       border: none;
+      cursor: pointer;
     }
     .cancel-button:hover{
       background-color: $hover_grey;
@@ -1169,12 +1251,100 @@ padding: 10px;
       font-size: 16px;
       border: none;
       color:white;
+      cursor: pointer;
     }
     .save-button:hover{
       background-color: $hover_red;
     }
   }
 }
+
+// EDIT PROFILE 
+
+.update-profile-section{
+  .update-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 730px;
+    // margin: 0 auto;
+    margin: 10px 0;
+    .profile-section-title{
+      margin-right: 20px;
+      p{
+        font-weight: normal;
+        padding-top: 8px;
+      }
+    }
+  }
+  .profile-image-change{
+    .image-change{
+      text-align: center;
+      img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 15px 0;
+      }
+    }
+    .image-change-button{
+      margin-right: 170px;
+      font-weight: normal;
+    }
+  }
+  .input{
+    .text-input{
+      background-color: $light_grey;
+      border: none;
+      height: 30px;
+      border-radius: 15px;
+      width: 400px;
+      display: flex;
+      margin-top: 5px;
+    }
+    .label{
+      font-weight: normal;
+    }
+  }
+  .buttons{
+    width: 200px;
+    display:flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    .cancel-button{
+      background-color: $light_grey;
+      padding: 12px 15px;
+      border-radius: 22px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    .cancel-button:hover{
+      background-color: $hover_grey;
+    }
+    .save-button{
+      background-color: $red;
+      padding: 12px 15px;
+      border-radius: 22px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      color:white;
+      cursor: pointer;
+    }
+    .save-button:hover{
+      background-color: $hover_red;
+    }
+  }
+.error-message{
+  color: $red;
+  margin-top: 20px;
+}
+}
+
 
 // FOOTER
 
@@ -1199,4 +1369,11 @@ padding: 10px;
       padding-left: 15px;
     }
   }
+}
+
+.loading{
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  align-items: center;
 }
