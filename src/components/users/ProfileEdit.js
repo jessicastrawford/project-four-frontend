@@ -28,6 +28,7 @@ function ProfileEdit() {
       try {
         const res = await getSingleUser()
         setUser(res.data)
+        setFormData(res.data)
       } catch (err) {
         console.log(err)
       }
@@ -61,7 +62,7 @@ function ProfileEdit() {
     }
   }
 
-  console.log('finding', user?.id)
+  console.log('finding', user)
 
   const handleCancel = () => {
     history.push('/profile')
@@ -78,14 +79,14 @@ function ProfileEdit() {
           <div className="image-change">
             <img src={user?.profileImage} />
           </div>
-          <div className="image-change-button">
+          {/* <div className="image-change-button">
             <ImageUploadField 
               onChange={handleImageUpload}
               labelText="Upload Image*"
               name="profileImage"
               value={formData.profileImage}
             />
-          </div>
+          </div> */}
         </div>
         <div className="input">
           <label className="label">First name*</label>
@@ -128,7 +129,7 @@ function ProfileEdit() {
           />
         </div>
         <div className="input">
-          <label className="label">Job title</label>
+          <label className="label">Job title <span className="not-required">(field not required)</span></label>
           <input 
             placeholder={user?.jobTitle}
             name="jobTitle"
@@ -138,7 +139,7 @@ function ProfileEdit() {
           />
         </div>
         <div className="input">
-          <label className="label">Company</label>
+          <label className="label">Company <span className="not-required">(field not required)</span></label>
           <input 
             placeholder={user?.company}
             name="company"

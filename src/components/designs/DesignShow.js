@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import ReactStars from 'react-star-rating-component'
 import MeasurementTable from './MeasurementTable'
 import { useHistory } from 'react-router-dom'
-import Loading from '../common/Loading'
+// import Loading from '../common/Loading'
 
 import Moment from 'react-moment'
 import 'moment-timezone'
@@ -284,7 +284,7 @@ function DesignShow() {
                   edit={false}
                   starColor={'red'}
                 />
-                <p>&quot;{comment.text}&quot;</p>
+                <p className="comment-text">&quot;{comment.text}&quot;</p>
               </div>
             </div>
           </Link>
@@ -295,7 +295,7 @@ function DesignShow() {
           {design.designDrawing ? <img src={design.designDrawing} className="technical-drawing"/> : <p className="text-error">*No design drawing uploaded*</p>}
           <div className="measurement-table">
             <p className="technical-title">Technical Drawing and Measurements:</p>
-            <MeasurementTable design={design}/>
+            <MeasurementTable design={design} className="table"/>
           </div>
         </div>
       </div>
@@ -316,3 +316,4 @@ function DesignShow() {
 }
 
 export default DesignShow
+

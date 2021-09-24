@@ -13,8 +13,6 @@ function Login() {
   })
   const [error, setError] = React.useState(false)
   const history = useHistory()
-  const [trigger, setTrigger] = React.useState(true)
-  const [buttonPopup, setButtonPopup] = React.useState(false)
   const isLoggedIn = isAuthenticated()
 
   const handleChange = (e) => {
@@ -23,16 +21,9 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // setTrigger(false)
-    // console.log('trigger', trigger)
-    // setButtonPopup(false)
-    // console.log('buttonpopup', buttonPopup)
     try {
       const res = await loginUser(formData)
-      // if (!loginUser) throw new Error
       setToken(res.data.token)
-      setButtonPopup(false)
-      setTrigger(false)
       history.push('/designs')
 
     } catch (err) {
@@ -43,13 +34,12 @@ function Login() {
 
   const handleClick = () => {
     history.push('/sign-up')
-    setButtonPopup(false)
   }
 
 
   return (
 
-    <section className="login-section">
+    <section className="login-section notpopup">
       {!isLoggedIn ? 
         <form className="login">
           <input
@@ -66,15 +56,11 @@ function Login() {
             type="password"
             value={formData.password}
             onChange={handleChange}
-          // onBlur={handleSubmit}
           />
           <button
             type="submit" 
             className="login-button" 
-            // onClick={() => setTrigger(false)}
             onClick={handleSubmit}
-          // trigger={buttonPopup} 
-          // setTrigger={setButtonPopup}
           >
         Log In
           </button>
@@ -86,9 +72,6 @@ function Login() {
           <p>Need an account? Sign up <button onClick={handleClick}className="here-button">here</button></p>
         </form>
         : ''} 
-      <LoginPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <Login />
-      </LoginPopup>
     </section>
     
 
@@ -97,10 +80,3 @@ function Login() {
 
 
 export default Login
-
-{/* <LoginToast
-type="submit" 
-className="login-button" 
-onClick={handleSubmit}>
-Log In
-</LoginToast> */}

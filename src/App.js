@@ -13,6 +13,7 @@ import ProfileEdit from './components/users/ProfileEdit'
 import DesignUpload from './components/designs/DesignUpload'
 import Scroll from './components/auth/Scroll'
 import OtherUsersProfileShow from './components/users/OtherUsersProfileShow'
+import LoginNotPopup from './components/auth/LoginNotPopup'
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/log-in">
             <Login />
+          </Route>
+          <Route path="/log-in-notpopup">
+            <LoginNotPopup />
           </Route>
           <Route path="/sign-up">
             <Register />

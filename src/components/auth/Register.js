@@ -4,13 +4,11 @@ import { useHistory } from 'react-router-dom'
 import ImageUploadField from '../auth/ImageUpload'
 import { registerUser, loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
-import { Link } from 'react-router-dom'
-
-
+// import { Link } from 'react-router-dom'
+import LoginPopup from '../auth/LoginPopup'
+import Login from '../auth/Login'
 
 function Register() {
-
-  const [error, setError] = React.useState(false)
 
   const [formData, setFormData] = React.useState({
     firstName: '',
@@ -26,6 +24,7 @@ function Register() {
   })
 
   const history = useHistory()
+  const [error, setError] = React.useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -56,6 +55,9 @@ function Register() {
     setFormData({ ...formData, [name]: imageUrl })
   }
 
+  const [buttonPopup, setButtonPopup] = React.useState(false)
+
+
   console.log(formData)
   return (
     <section className="register-page">
@@ -67,7 +69,6 @@ function Register() {
           value={formData.firstName}
           onChange={handleChange}
           className="text-input"
-          required
         />
       </div>
       <div>
@@ -149,8 +150,11 @@ function Register() {
         </>
       }
       <button type="submit" className="signup-button" onClick={handleSubmit}>Sign up</button>
-      <p className="member">Already a member? <Link to="/log-in">Log in</Link></p>
+      <p className="member">Already a member?  <button onClick={() => setButtonPopup(true)} className="login-button">Log in</button> </p>
       {/* <button type="submit" className="button login-button" onClick={handleLogIn}>Already have an account? Log in</button> */}
+      <LoginPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        <Login />
+      </LoginPopup>
     </section>
 
   )
