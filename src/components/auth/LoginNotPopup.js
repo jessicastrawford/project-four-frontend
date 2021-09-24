@@ -2,8 +2,6 @@ import React from 'react'
 import { useHistory } from 'react-router'
 import { loginUser } from '../../lib/api'
 import { setToken, isAuthenticated } from '../../lib/auth'
-import { Link } from 'react-router-dom'
-import LoginPopup from '../auth/LoginPopup'
 
 
 function Login() {

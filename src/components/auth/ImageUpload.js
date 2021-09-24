@@ -15,7 +15,7 @@ function ImageUploadField({ onChange, labelText, name, value }) {
     data.append('upload_preset', uploadPreset)
     const res = await axios.post(uploadUrl, data)
     onChange(res.data.url, name)
-    console.log(name, 'name')
+    console.log(setIsUploading)
     // setIsUploading(false)
   }
 

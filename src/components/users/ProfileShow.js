@@ -1,6 +1,6 @@
 import React from 'react'
 import { profileView } from '../../lib/api'
-import { getUserId, isOwner } from '../../lib/auth'
+import { getUserId } from '../../lib/auth'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { deleteADesign } from '../../lib/api'

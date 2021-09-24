@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import ImageUploadField from '../auth/ImageUpload'
+// import ImageUploadField from '../auth/ImageUpload'
 import { editUser, getSingleUser } from '../../lib/api'
 
 function ProfileEdit() {
@@ -45,9 +45,9 @@ function ProfileEdit() {
 
 
 
-  const handleImageUpload = (imageUrl, name) => {
-    setFormData({ ...formData, [name]: imageUrl })
-  }
+  // const handleImageUpload = (imageUrl, name) => {
+  //   setFormData({ ...formData, [name]: imageUrl })
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault()

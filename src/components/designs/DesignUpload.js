@@ -2,7 +2,6 @@ import React from 'react'
 import ImageUploadField from '../auth/ImageUpload'
 import { createADesign } from '../../lib/api'
 import { useHistory } from 'react-router'
-import { getUserId } from '../../lib/auth'
 
 
 import MenuItem from '@material-ui/core/MenuItem'

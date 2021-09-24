@@ -10,6 +10,7 @@ function ScrollButton() {
       setVisible(false) 
     } else if (scrolled <= 0){ 
       setVisible(true) 
+      console.log(visible)
     } 
   }
     

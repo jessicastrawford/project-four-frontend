@@ -1,8 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { getSingleDesign, createAComment, getSingleUser, saveUnsaveDesign, profileView } from '../../lib/api'
+import { getSingleDesign, createAComment, getSingleUser, saveUnsaveDesign } from '../../lib/api'
 import axios from 'axios'
-import { isAuthenticated, getUserId } from '../../lib/auth'
+import { isAuthenticated } from '../../lib/auth'
 import { Link } from 'react-router-dom'
 import ReactStars from 'react-star-rating-component'
 import MeasurementTable from './MeasurementTable'
@@ -28,7 +28,6 @@ function DesignShow() {
   const [isSaved, setIsSaved] = React.useState(false)
   const [comments, setComments] = React.useState('')
   const [isError, setIsError] = React.useState(false)
-  const isLoading = !designs && !isError
 
   
   isAuthenticated()
@@ -58,7 +57,7 @@ function DesignShow() {
       }
     }
     getData()
-  }, [designId])
+  }, [comments, designId])
 
 
   const handleChange = (e) => {

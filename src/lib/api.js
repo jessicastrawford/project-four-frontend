@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getToken } from './auth'
+import { baseUrl } from '../config'
 
 function headers() {
   return {
@@ -7,8 +8,6 @@ function headers() {
   }
 }
 
-
-const baseUrl = '/api'
 
 // AUTH REQUESTS
 
