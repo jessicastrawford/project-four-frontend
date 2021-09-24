@@ -39,11 +39,11 @@ export function showUserProfile(userId) {
 // DESIGN REQUESTS
 
 export function getAllDesigns(){
-  return axios.get(`${baseUrl}/designs`)
+  return axios.get(`${baseUrl}/designs/`)
 }
 
 export function getSingleDesign(designId) {
-  return axios.get(`${baseUrl}/designs/${designId}`)
+  return axios.get(`${baseUrl}/designs/${designId}/`)
 }
 
 export function createADesign(formData) {

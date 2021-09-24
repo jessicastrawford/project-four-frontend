@@ -14,7 +14,7 @@ function Home() {
       imageUrl: 'https://assets.vogue.com/photos/5d9663603b257600087ff805/master/pass/00-promo%20(5).jpg',
     },
     {
-      imageUrl: 'https://bcuportfolio.com/wp-content/uploads/2020/05/main-block-1.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/a3/4a/8b/a34a8b4b2650b3c948e4279d7f02c82b.jpg',
     },
     {
       imageUrl: 'https://i.pinimg.com/564x/55/9b/5c/559b5cbdfea3c1081d9ca60559d96b79.jpg',
