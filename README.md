@@ -231,4 +231,6 @@ A bug which I have noticed is when a user is uploading a design, if not all the 
 
 * Clean up and refractor code. 
 
+![design-feed](https://user-images.githubusercontent.com/83759837/136573649-29c62731-b06c-467e-8076-8cdec647e77a.gif)
+
 
